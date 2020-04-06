@@ -110,7 +110,7 @@ def post_analitics(request, pk, start, end):
     except ValueError:
         error = {
             "detail":"Incorrect data format, should be YYYY-MM-DD and start date must be \
-            lower then and date"
+            lower then end date"
         }
         return Response(error, status=status.HTTP_400_BAD_REQUEST)
     # Check if post exist
@@ -123,7 +123,7 @@ def post_analitics(request, pk, start, end):
     countArray = []
 
     for like in likes:
-        data = {'date': str(like['date']), 'likes_count': like['count']}
+        data = {'date': str(like['date']), 'likes': like['count']}
         countArray.append(data)
 
     return Response(countArray, status=status.HTTP_200_OK)
